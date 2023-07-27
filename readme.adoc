@@ -1,0 +1,38 @@
+= Docker images for Fate and its derivatives
+
+This repository ships a base Docker image for configuration and extension by images shipping https://github.com/internet-equity/fate[Fate] and libraries derived from Fate.
+
+This enables the Dockerfiles of Fate derivatives to _configure_ – rather than re-implement – their basic installation and implement only the _additional_ logic (_e.g._ installation of system libraries) they require.
+
+== Use
+
+For the most basic use in the Dockerfile of a library derived from Fate it's as simple as specifying this base image and a default container command:
+
+```Dockerfile
+FROM ghcr.io/internet-equity/fate-builder
+
+CMD ["fated", "--foreground"]
+```
+
+Of course, the above will install the Fate library into the image. An alternate library shipped in the same manner may be specified instead:
+
+```Dockerfile
+ARG APP_NAME=fate-custom
+ARG ORG_NAME=another-name
+
+FROM ghcr.io/internet-equity/fate-builder
+
+CMD ["fated", "--foreground"]
+```
+
+Refer to the https://github.com/internet-equity/fate/blob/main/Dockerfile[Fate Dockerfile] for a more concrete example and to the https://github.com/internet-equity/netrics/blob/main/Dockerfile[Netrics Dockerfile] for a more sophisticated extension of this base.
+
+== Implementation
+
+Note that this base image operates like a Docker image "template" – using the `ONBUILD` instruction for much of its logic.
+
+As such, the base image is itself little more than its own base (https://hub.docker.com/_/python[Debian by default]).
+
+Build arguments provided to the `docker build` command – or within the library Dockerfile prior to the `FROM` instruction – configure the on-build logic of the base image. This includes ensuring that the image operating system is up-to-date and that the Fate-like library is installed.
+
+Any of the library's additional requirements may be met by further instructions implemented in the library Dockerfile.
