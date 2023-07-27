@@ -9,6 +9,9 @@ This enables the Dockerfiles of Fate derivatives to _configure_ – rather than 
 For the most basic use in the Dockerfile of a library derived from Fate it's as simple as specifying this base image and a default container command:
 
 ```Dockerfile
+ARG APP_NAME=fate
+ARG ORG_NAME=internet-equity
+
 FROM ghcr.io/internet-equity/fate-builder
 
 CMD ["fated", "--foreground"]
