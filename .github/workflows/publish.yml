@@ -169,6 +169,7 @@ jobs:
     steps:
       - name: Configure publishing changeset author
         env:
+          GH_TOKEN: ${{ github.token }}
           SENDER: ${{ github.event.sender.login }}
         run: |
           USER="$(
