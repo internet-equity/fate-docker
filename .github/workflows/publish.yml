@@ -108,30 +108,30 @@ jobs:
         base-image:
           - name: python:3.11-bookworm
             tags: |
-              ghcr.io/${{ github.respository }}:latest
-              ghcr.io/${{ github.respository }}:bookworm
-              ghcr.io/${{ github.respository }}:py311
-              ghcr.io/${{ github.respository }}:bookworm-py311
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-bookworm
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-py311
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-bookworm-py311
+              ghcr.io/${{ github.repository }}:latest
+              ghcr.io/${{ github.repository }}:bookworm
+              ghcr.io/${{ github.repository }}:py311
+              ghcr.io/${{ github.repository }}:bookworm-py311
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-bookworm
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-py311
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-bookworm-py311
           - name: python:3.11-slim-bookworm
             tags: |
-              ghcr.io/${{ github.respository }}:slim
-              ghcr.io/${{ github.respository }}:slim-bookworm
-              ghcr.io/${{ github.respository }}:slim-py311
-              ghcr.io/${{ github.respository }}:slim-bookworm-py311
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim-bookworm
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim-py311
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim-bookworm-py311
+              ghcr.io/${{ github.repository }}:slim
+              ghcr.io/${{ github.repository }}:slim-bookworm
+              ghcr.io/${{ github.repository }}:slim-py311
+              ghcr.io/${{ github.repository }}:slim-bookworm-py311
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim-bookworm
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim-py311
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim-bookworm-py311
           - name: ubuntu:22.04
             tags: |
-              ghcr.io/${{ github.respository }}:jammy
-              ghcr.io/${{ github.respository }}:jammy-py310
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-jammy
-              ghcr.io/${{ github.respository }}:${{ inputs.version }}-jammy-py310
+              ghcr.io/${{ github.repository }}:jammy
+              ghcr.io/${{ github.repository }}:jammy-py310
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-jammy
+              ghcr.io/${{ github.repository }}:${{ inputs.version }}-jammy-py310
 
     steps:
       - name: Log in to the Container registry
