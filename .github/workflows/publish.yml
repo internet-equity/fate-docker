@@ -16,8 +16,6 @@ on:
 env:
   GIT_COMMITTER_NAME: github-actions[bot]
   GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   check:
@@ -110,36 +108,36 @@ jobs:
         base-image:
           - name: python:3.11-bookworm
             tags: |
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:latest
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:bookworm
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:py311
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:bookworm-py311
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-bookworm
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-py311
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-bookworm-py311
+              ghcr.io/${{ github.respository }}:latest
+              ghcr.io/${{ github.respository }}:bookworm
+              ghcr.io/${{ github.respository }}:py311
+              ghcr.io/${{ github.respository }}:bookworm-py311
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-bookworm
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-py311
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-bookworm-py311
           - name: python:3.11-slim-bookworm
             tags: |
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:slim
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:slim-bookworm
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:slim-py311
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:slim-bookworm-py311
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-slim
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-slim-bookworm
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-slim-py311
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-slim-bookworm-py311
+              ghcr.io/${{ github.respository }}:slim
+              ghcr.io/${{ github.respository }}:slim-bookworm
+              ghcr.io/${{ github.respository }}:slim-py311
+              ghcr.io/${{ github.respository }}:slim-bookworm-py311
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim-bookworm
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim-py311
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-slim-bookworm-py311
           - name: ubuntu:22.04
             tags: |
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:jammy
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:jammy-py310
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-jammy
-              ${{ env.REGISTRY }}/${{ IMAGE_NAME }}:${{ inputs.version }}-jammy-py310
+              ghcr.io/${{ github.respository }}:jammy
+              ghcr.io/${{ github.respository }}:jammy-py310
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-jammy
+              ghcr.io/${{ github.respository }}:${{ inputs.version }}-jammy-py310
 
     steps:
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
