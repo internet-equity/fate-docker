@@ -142,7 +142,7 @@ jobs:
         with:
           push: true
           build-args: BASE_IMAGE=${{ matrix.base-image.name }}
-          labels: org.opencontainers.image.source = "https://github.com/${{ github.repository }}"
+          labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
           tags: ${{ matrix.base-image.tags }}
 
       - name: Write to summary
