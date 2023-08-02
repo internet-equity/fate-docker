@@ -104,30 +104,30 @@ jobs:
         base-image:
           - name: python:3.11-bookworm
             tags: |
-              ghcr.io/${{ github.repository }}:latest
-              ghcr.io/${{ github.repository }}:bookworm
-              ghcr.io/${{ github.repository }}:py311
-              ghcr.io/${{ github.repository }}:bookworm-py311
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-bookworm
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-py311
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-bookworm-py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:latest
+              ghcr.io/${{ github.repository_owner }}/fate-builder:bookworm
+              ghcr.io/${{ github.repository_owner }}/fate-builder:py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:bookworm-py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-bookworm
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-bookworm-py311
           - name: python:3.11-slim-bookworm
             tags: |
-              ghcr.io/${{ github.repository }}:slim
-              ghcr.io/${{ github.repository }}:slim-bookworm
-              ghcr.io/${{ github.repository }}:slim-py311
-              ghcr.io/${{ github.repository }}:slim-bookworm-py311
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim-bookworm
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim-py311
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-slim-bookworm-py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:slim
+              ghcr.io/${{ github.repository_owner }}/fate-builder:slim-bookworm
+              ghcr.io/${{ github.repository_owner }}/fate-builder:slim-py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:slim-bookworm-py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-slim
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-slim-bookworm
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-slim-py311
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-slim-bookworm-py311
           - name: ubuntu:22.04
             tags: |
-              ghcr.io/${{ github.repository }}:jammy
-              ghcr.io/${{ github.repository }}:jammy-py310
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-jammy
-              ghcr.io/${{ github.repository }}:${{ inputs.version }}-jammy-py310
+              ghcr.io/${{ github.repository_owner }}/fate-builder:jammy
+              ghcr.io/${{ github.repository_owner }}/fate-builder:jammy-py310
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-jammy
+              ghcr.io/${{ github.repository_owner }}/fate-builder:${{ inputs.version }}-jammy-py310
 
     steps:
       - name: Log in to the Container registry
@@ -142,6 +142,7 @@ jobs:
         with:
           push: true
           build-args: BASE_IMAGE=${{ matrix.base-image.name }}
+          labels: org.opencontainers.image.source = "https://github.com/${{ github.repository }}"
           tags: ${{ matrix.base-image.tags }}
 
       - name: Write to summary
